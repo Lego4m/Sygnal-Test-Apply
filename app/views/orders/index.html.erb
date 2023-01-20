@@ -1,7 +1,8 @@
 <div class="flex items-center justify-between">
-  <h1 class="font-bold text-lg">
-    Orders
-  </h1>
+  <%= link_to 'New Order', 
+    new_order_path,
+    class: 'bg-blue-500 p-2 rounded text-white font-bold text-lg'
+  %>
 
   <h2 class="font-bold text-lg">
     <%= @orders.size %>
