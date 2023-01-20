@@ -1,8 +1,8 @@
 class CreateOrders < ActiveRecord::Migration[6.1]
   def change
     create_table :orders do |t|
-      t.string :description
-      t.references :status, null: false, foreign_key: true
+      t.string :description, null: false
+      t.string :status, null: false, default: 'pending'
 
       t.timestamps
     end

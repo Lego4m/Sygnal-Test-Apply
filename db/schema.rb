@@ -13,18 +13,10 @@
 ActiveRecord::Schema.define(version: 2023_01_20_165919) do
 
   create_table "orders", force: :cascade do |t|
-    t.string "description"
-    t.integer "status_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["status_id"], name: "index_orders_on_status_id"
-  end
-
-  create_table "statuses", force: :cascade do |t|
-    t.string "description"
+    t.string "description", null: false
+    t.string "status", default: "pending", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "orders", "statuses"
 end

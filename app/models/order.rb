@@ -1,3 +1,7 @@
 class Order < ApplicationRecord
-  belongs_to :status
+  enum status: { 
+    pending: 'pending', 
+    in_progess: 'in_progress', 
+    finished: 'finished' 
+  }
 end
