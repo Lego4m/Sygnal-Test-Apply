@@ -19,7 +19,11 @@
 
     <div>
       <%= form.select 'status', 
-        Order.statuses.transform_keys { |key| key.titleize },
+        options_for_select(
+          Order.statuses.transform_keys { |key| key.titleize },
+          selected: @order.status,
+          disabled: get_select_disabled_options(@order.status)
+        ),
         {},
         class: "w-[100%] border-gray-300 rounded"
       %>
