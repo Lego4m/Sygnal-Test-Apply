@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:edit, :update]
 
   def index
-    @orders = Order.all
+    @orders = Order.where(filter_query)
   end
 
   def new
@@ -44,5 +44,18 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:description, :status)
+  end
+
+  def filter_params
+    params.permit(:id, statuses: [])
+  end
+
+  def filter_query 
+    query = {}
+
+    query[:id] = params[:id] if params[:id].present?
+    query[:status] = params[:statuses] if params[:statuses].present?
+
+    return query
   end
 end

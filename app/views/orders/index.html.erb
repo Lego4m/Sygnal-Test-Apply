@@ -9,6 +9,51 @@
   </h2>
 </div>
 
+<%= form_with method: :GET,
+  class: 'flex items-center justify-between mt-4' do |form| 
+%>
+  <%= form.submit 'Filter',
+    class: 'bg-orange-500 px-4 py-2 rounded text-white font-bold text-lg cursor-pointer'
+  %>
+
+  <div>
+    <%= form.number_field :id, 
+      class: "border-gray-300 rounded max-w-[8rem]",
+      min: 0,
+      value: params[:id] || ''
+    %>
+
+    <div class="flex justify-between mt-2">
+      <%= form.check_box 'statuses[]', 
+        {
+          include_hidden: false,
+          checked: params[:statuses]&.include?('pending') || false,
+          class: "p-3 rounded border-2 border-gray-500 checked:bg-gray-500 focus:checked:bg-gray-500 checked:hover:bg-gray-400" 
+        }, 
+        'pending'
+      %>
+
+      <%= form.check_box 'statuses[]',
+        {
+          include_hidden: false,
+          checked: params[:statuses]&.include?('in_progress') || false,
+          class: "p-3 rounded border-2 border-orange-500 checked:bg-orange-500 focus:checked:bg-orange-500 checked:hover:bg-orange-400" 
+        },
+        'in_progress'
+      %>
+
+      <%= form.check_box 'statuses[]', 
+        {
+          include_hidden: false,
+          checked: params[:statuses]&.include?('finished') || false,
+          class: "p-3 rounded border-2 border-green-500 checked:bg-green-500 focus:checked:bg-green-500 checked:hover:bg-green-400" 
+        },
+        'finished'
+      %>
+    </div>
+  </div>
+<% end %>
+
 <ul class="flex flex-col gap-2 mt-4">
   <% @orders.each do |order| %>
     <li class="flex flex-row items-center rounded-md px-3 py-2 border border-gray-300">
