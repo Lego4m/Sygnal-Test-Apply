@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :verify_status, only: [:update]
 
   def index
-    @orders = Order.where(filter_query)
+    @orders = Order.where(filter_query).reverse_order
   end
 
   def new

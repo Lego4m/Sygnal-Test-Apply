@@ -1,24 +1,24 @@
 <div class="flex flex-col items-center">
   <%= form_with model: @order,
-    class: "flex flex-col gap-4 w-[100%] max-w-sm" do |form| 
+    class: "flex flex-col gap-4 w-[100%] max-w-sm" do |form|
   %>
     <h1 class="font-bold text-2xl text-center">
       Edit Order
     </h1>
 
     <div class="flex flex-col">
-      <%= form.label :description, 
-        class: "text-sm" 
+      <%= form.label :description,
+        class: "text-sm"
       %>
 
       <%= form.text_field :description,
         class: "border-gray-300 rounded",
-        placeholder: 'Description' 
+        placeholder: 'Description'
       %>
     </div>
 
     <div>
-      <%= form.select 'status', 
+      <%= form.select 'status',
         options_for_select(
           Order.statuses.transform_keys { |key| key.titleize },
           selected: @order.status,

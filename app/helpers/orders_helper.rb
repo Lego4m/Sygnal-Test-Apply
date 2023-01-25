@@ -1,4 +1,15 @@
 module OrdersHelper
+  def get_info_background(status)
+    case status
+      when 'pending'
+        'bg-gray-500'
+      when 'in_progress'
+        "bg-orange-500"
+      when 'finished'
+        "bg-green-500"
+    end
+  end
+
   def get_select_disabled_options(status)
     case status
       when 'pending'
