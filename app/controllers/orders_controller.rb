@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:edit, :update]
+  before_action :verify_status, only: [:update]
 
   def index
     @orders = Order.where(filter_query)
@@ -28,7 +29,7 @@ class OrdersController < ApplicationController
   def update
     if @order.update(order_params)
       redirect_to orders_path
-    else 
+    else
       render :edit
     end
   end
@@ -50,12 +51,16 @@ class OrdersController < ApplicationController
     params.permit(:id, statuses: [])
   end
 
-  def filter_query 
+  def filter_query
     query = {}
 
     query[:id] = params[:id] if params[:id].present?
     query[:status] = params[:statuses] if params[:statuses].present?
 
     return query
+  end
+
+  def verify_status
+    params[:order].extract!(:status) if !Order.can_update_status(@order.status, order_params[:status])
   end
 end
