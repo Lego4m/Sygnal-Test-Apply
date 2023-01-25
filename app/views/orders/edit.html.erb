@@ -17,7 +17,11 @@
       %>
     </div>
 
-    <div>
+    <div class="flex flex-col">
+      <%= form.label :status,
+        class: "text-sm"
+      %>
+
       <%= form.select 'status',
         options_for_select(
           Order.statuses.transform_keys { |key| key.titleize },
