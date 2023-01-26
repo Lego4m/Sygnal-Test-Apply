@@ -13,7 +13,7 @@ module OrdersHelper
   def get_select_disabled_options(status)
     case status
       when 'pending'
-        []
+        ['finished']
       when 'in_progress'
         ['pending']
       when 'finished'
