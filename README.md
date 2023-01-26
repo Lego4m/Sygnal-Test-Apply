@@ -1,24 +1,12 @@
-# README
+# Test-Apply
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Versions
 
-Things you may want to cover:
+* Ruby: 3.0.5;
+* Rails: 6.1.7.
 
-* Ruby version
+Note: The latest versions of ruby doesn't work with rails 6.1.7.
 
-* System dependencies
+## Database
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* To configure the database, just run `rails db:create` & `rails db:migrate` on terminal.
