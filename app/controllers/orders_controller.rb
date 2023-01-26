@@ -2,7 +2,10 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:edit, :update]
 
   def index
-    @orders = Order.where(filter_query).reverse_order
+      @orders = Order
+        .where(filter_query)
+        .where("lower(description) LIKE ?", "%#{filter_params[:description]}%")
+        .reverse_order
   end
 
   def new
@@ -47,7 +50,7 @@ class OrdersController < ApplicationController
   end
 
   def filter_params
-    params.permit(:id, statuses: [])
+    params.permit(:id, :description, statuses: [])
   end
 
   def filter_query
