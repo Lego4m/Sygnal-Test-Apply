@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:edit, :update]
-  before_action :verify_status, only: [:update]
 
   def index
     @orders = Order.where(filter_query).reverse_order
@@ -58,9 +57,5 @@ class OrdersController < ApplicationController
     query[:status] = params[:statuses] if params[:statuses].present?
 
     return query
-  end
-
-  def verify_status
-    params[:order].extract!(:status) if !Order.can_update_status(@order.status, order_params[:status])
   end
 end

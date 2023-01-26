@@ -13,14 +13,13 @@ class Order < ApplicationRecord
     on: :create
   })
 
-  # Class Methods
-  def self.can_update_status(previousStatus, status)
-    return false if (previousStatus == 'pending' && status != 'in_progress')
+  validate :update_status, if: -> { status_changed? }, on: :update
 
-    return false if (previousStatus == 'in_progress' && status != 'finished')
+  def update_status
+    return if (status_was == 'pending' && status == 'in_progress')
 
-    return false if (previousStatus == 'finished')
+    return if (status_was == 'in_progress' && status == 'finished')
 
-    return true
+    errors.add :status, "cannot update."
   end
 end
