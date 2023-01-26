@@ -5,6 +5,8 @@ class Order < ApplicationRecord
     finished: 'finished'
   }
 
+  validates :description, uniqueness: { message: 'with that name already exists.' }
+
   validates(:status, {
     inclusion: {
       in: ['pending'],

@@ -12,7 +12,7 @@
       %>
 
       <%= form.text_field :description,
-        class: "border-gray-300 rounded",
+        class: "border-gray-300 rounded w-[100%]",
         placeholder: 'Description'
       %>
     </div>
@@ -36,5 +36,7 @@
     <%= form.submit 'Update',
       class: "bg-blue-600 text-white font-bold p-2 rounded cursor-pointer"
     %>
+
+    <%= render partial: 'orders/shared/errors', locals: { errors: @order.errors } %>
   <% end%>
 </div>

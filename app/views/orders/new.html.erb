@@ -1,18 +1,18 @@
 <div class="flex flex-col items-center">
   <%= form_with model: @order, url: orders_path,
-    class: "flex flex-col gap-4 w-[100%] max-w-sm" do |form| 
+    class: "flex flex-col gap-4 w-[100%] max-w-sm" do |form|
   %>
     <h1 class="font-bold text-2xl text-center">
       Create Order
     </h1>
 
     <div class="flex flex-col">
-      <%= form.label :description, 
-        class: "text-sm" 
+      <%= form.label :description,
+        class: "text-sm"
       %>
 
       <%= form.text_field :description,
-        class: "border-gray-300 rounded",
+        class: "border-gray-300 rounded w-[100%]",
         placeholder: 'Description'
       %>
     </div>
@@ -20,5 +20,7 @@
     <%= form.submit 'Create',
       class: "bg-blue-600 text-white font-bold p-2 rounded cursor-pointer"
     %>
+
+    <%= render partial: 'orders/shared/errors', locals: { errors: @order.errors } %>
   <% end%>
 </div>
